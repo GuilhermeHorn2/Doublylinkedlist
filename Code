@@ -1,0 +1,163 @@
+#include <iostream>
+#include <cmath>
+#include <cstring>
+#include <cstdlib>
+//
+
+//
+using namespace std;
+
+class node{
+public:
+    int key;
+    int data;
+    node* next;
+    node* previus;
+
+    node(){
+        key = 0;
+        data = 0;
+        next = NULL;
+        previus = NULL;
+    }
+    node(int k,int d){
+        key = k;
+        data = d;
+    }
+
+};
+
+class DoublyLinkedList{
+public:
+    node* head;
+
+    DoublyLinkedList(){
+        head = NULL;
+    }
+    DoublyLinkedList(node* n){
+        head = n;
+    }
+
+    /* methods*/
+
+
+    //check if th eis node is on the linked list
+    node* CheckNode(int k){
+        node* temp = NULL;
+        node* ptr = head;
+
+        while(n != NULL){
+            if(n -> key == k){
+                temp = ptr;
+            }
+            ptr = ptr->next;
+        }
+        return temp;
+    }
+
+    // append a node to the end of the list
+    void append(node *n){
+        if(CheckNode(n->key) == NULL){
+            if(head == NULL){
+                head = n;
+            }
+            else{
+                node* temp = NULL;
+                node* ptr = head;
+                while(ptr !=NULL){
+                    ptr = ptr->next;
+                }
+                ptr->next = n;
+                n->previus = ptr;
+            }
+        }
+        else{
+            printf("Key value %d is on the list",n->key);
+        }
+    }
+
+    // append a node to the begginig of the list(change the head of the list)
+    void prepend(node *n){
+        if(CheckNode(n->key) == NULL){
+            if(head == NULL){
+                head = n;
+            }
+            else{
+                head->previus = n;
+                n->next = head;
+                head = n;
+            }
+
+        }
+        else{
+            printf("Key value %d is on the list",n->key);
+        }
+
+    }
+    //insert a node in a particular position
+    void insertNode(node*n,int k){
+        node* ptr = head;
+        while(ptr->key !=k){
+            ptr = ptr->next;
+        }
+        //tentar ligar ao aotras dps
+
+        node* anterior = ptr->previus;
+        n->previus = anterior;
+        anterior->next = n;
+
+        ptr->previus = n;
+        n->next = ptr;
+    }
+    // tirar o ultimo node
+    void pop(){
+        node* temp = head;
+        while(temp != NULL){
+            temp = temp->next;
+        }
+        node* n = temp->previus;
+        temp = NULL;
+        n->next = NULL;
+    }
+    //tirar o primeiro node
+    void prepop(){
+        node* n = head->next;
+        head = n;
+
+    }
+    //tirar um node especifico
+    void removeNode(node* n,int k){
+        node* ptr = head;
+        while(ptr->key != k){
+            ptr = ptr->next;
+        }
+        node* a = ptr->previus;
+        node* b = ptr->next;
+        a->next = b;
+        b->previus = a;
+        ptr = NULL;
+    }
+};
+
+
+int main(){
+    /*\n*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+return 0;
+
+}
