@@ -137,6 +137,21 @@ public:
         b->previus = a;
         ptr = NULL;
     }
+    void reverser(){
+    stack<struct node*>S;
+    node* temp = S.top();
+    head = temp;
+    S.pop();
+    while(!S.empty()){
+        temp->next = S.top();
+        S.top()->prev = temp;
+        S.pop();
+        temp = temp->next;
+    }
+    head = temp;
+    temp->prev = NULL;
+}
+
 };
 
 
